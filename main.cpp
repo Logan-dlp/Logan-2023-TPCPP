@@ -1,15 +1,14 @@
 #include <iostream>
 
-int tab[] = {5, 2, 7, 4, 9};
-
-void DisplayTriABulle(){
-    for (int i = 0; i < std::size(tab); ++i) {
-        std::cout << tab[i] << std::endl;
+void DisplayArray(int* tab, int size){
+    for (int i = 0; i < size; ++i) {
+        std::cout << tab[i];
     }
+    std::cout << std::endl;
 }
 
-void TriABulle(){
-    for (int i = std::size(tab) - 1; i > 0 ; i--) {
+void TriABulle(int* tab, int size){
+    for (int i = size - 1; i > 0 ; i--) {
         for (int j = 0; j < i - 1; ++j) {
             if (tab[j] > tab[j+1]){
                 int aux = tab[j];
@@ -20,9 +19,9 @@ void TriABulle(){
     }
 }
 
-void InverseTriABulle(){
-    for (int i = 0; i < std::size(tab) ; i++) {
-        for (int j = std::size(tab); j > i - 1; j--) {
+void InverseTriABulle(int* tab, int size){
+    for (int i = 0; i < size ; i++) {
+        for (int j = size; j > i; j--) {
             if (tab[j] > tab[j-1]){
                 int aux = tab[j];
                 tab[j] = tab[j-1];
@@ -33,9 +32,13 @@ void InverseTriABulle(){
 }
 
 int main(){
-    TriABulle();
-    DisplayTriABulle();
-    InverseTriABulle();
-    DisplayTriABulle();
+    int tab[] = {5, 2, 7, 4, 9};
+    int size = 5;
+    DisplayArray(tab, size); // mélanger
+    TriABulle(tab, size);
+    DisplayArray(tab, size); // croissant
+    InverseTriABulle(tab, size);
+    DisplayArray(tab, size); // décroissant
+    
     return 0;
 }
