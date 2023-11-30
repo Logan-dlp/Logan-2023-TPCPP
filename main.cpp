@@ -31,14 +31,24 @@ void InverseTriABulle(int* tab, int size){
     }
 }
 
+void TriParInsertion(int* tab, int size){
+    for (int i = 1; i < size; ++i) {
+        int aux = tab[i];
+        int j = i - 1;
+        while (j >= 0 && tab[j] > aux){
+            tab[j + 1] = tab[j];
+            j -= 1;
+        }
+        tab[j + 1] = aux;
+    }
+}
+
 int main(){
     int tab[] = {5, 2, 7, 4, 9};
     int size = 5;
-    DisplayArray(tab, size); // mélanger
-    TriABulle(tab, size);
-    DisplayArray(tab, size); // croissant
-    InverseTriABulle(tab, size);
-    DisplayArray(tab, size); // décroissant
+
+    TriParInsertion(tab, size);
+    DisplayArray(tab, size);
     
     return 0;
 }
