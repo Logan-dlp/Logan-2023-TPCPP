@@ -43,11 +43,46 @@ void TriParInsertion(int* tab, int size){
     }
 }
 
+void Swap(int* tab, int left, int right){
+    int tabLeft = tab[left];
+    tab[left] = tab[right];
+    tab[right] = tabLeft;
+}
+
+int Partition(int* tab, int low, int high){
+    int pivot_index = high;
+    int l = low;
+
+    for (int i = low; i < high; ++i) {
+        if (tab[i] <= tab[pivot_index]){
+            Swap(tab, i, l);
+            l++;
+        }
+    }
+    Swap(tab, l, pivot_index);
+
+    return l;
+}
+
+void QuickShort(int* tab, int size, int low = 0, int high = 0){
+
+    if (high == 0){
+        high = size - 1;
+    }
+
+    if (low < high){
+        int p = Partition(tab, low, high);
+
+        QuickShort(tab, p, low, p - 1);
+        QuickShort(tab, high + 1, p + 1, high);
+    }
+}
+
 int main(){
     int tab[] = {5, 2, 7, 4, 9};
     int size = 5;
 
-    TriParInsertion(tab, size);
+    QuickShort(tab, size);
     DisplayArray(tab, size);
     
     return 0;
