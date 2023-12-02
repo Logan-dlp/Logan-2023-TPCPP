@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 void DisplayArray(int* tab, int size){
     for (int i = 0; i < size; ++i) {
@@ -79,11 +80,18 @@ void QuickShort(int* tab, int size, int low = 0, int high = 0){
 }
 
 int main(){
+    auto start = std::chrono::high_resolution_clock::now();
+
     int tab[] = {5, 2, 7, 4, 9};
     int size = 5;
 
     QuickShort(tab, size);
     DisplayArray(tab, size);
+
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
     
     return 0;
 }
