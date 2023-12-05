@@ -1,9 +1,10 @@
 #include <iostream>
 #include <chrono>
+#include <random>
 
 void DisplayArray(int* tab, int size){
     for (int i = 0; i < size; ++i) {
-        std::cout << tab[i];
+        std::cout << tab[i] << ".";
     }
     std::cout << std::endl;
 }
@@ -79,19 +80,83 @@ void QuickShort(int* tab, int size, int low = 0, int high = 0){
     }
 }
 
+void RandomArray(int* tab, int size){
+
+    constexpr int MIN = 0;
+    constexpr int MAX = 9;
+
+    for (int i = 0; i < size; ++i) {
+        std::random_device rd;
+        std::default_random_engine eng(rd());
+        std::uniform_int_distribution<int> distr(MIN, MAX);
+
+        tab[i] = distr(eng);
+    }
+}
+
 int main(){
+    // 1.
     auto start = std::chrono::high_resolution_clock::now();
 
-    int tab[] = {5, 2, 7, 4, 9};
-    int size = 5;
+    int tab1[] = {7, 1, 5, 2, 3};
+    int size1 = std::size(tab1);
 
-    QuickShort(tab, size);
-    DisplayArray(tab, size);
+    QuickShort(tab1, size1);
+    //DisplayArray(tab1, size1);
 
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
     std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
-    
+
+    // 2.
+    start = std::chrono::high_resolution_clock::now();
+
+    int tab2[100];
+    int size2 = std::size(tab2);
+
+    RandomArray(tab2, size2);
+
+    QuickShort(tab2, size2);
+    //DisplayArray(tab2, size2);
+
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
+
+    // 3.
+    start = std::chrono::high_resolution_clock::now();
+
+    int tab3[1000];
+    int size3 = std::size(tab3);
+
+    RandomArray(tab3, size3);
+
+    QuickShort(tab3, size3);
+    //DisplayArray(tab3, size3);
+
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
+
+    // 4.
+    start = std::chrono::high_resolution_clock::now();
+
+    int tab4[1000];
+    int size4 = std::size(tab4);
+
+    RandomArray(tab4, size4);
+
+    InverseTriABulle(tab4, size4);
+    //DisplayArray(tab4, size4);
+
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
+
+
     return 0;
 }
