@@ -96,10 +96,11 @@ void RandomArray(int* tab, int size){
 
 int main(){
     // 1.
-    auto start = std::chrono::high_resolution_clock::now();
 
     int tab1[] = {7, 1, 5, 2, 3};
     int size1 = std::size(tab1);
+
+    auto start = std::chrono::high_resolution_clock::now();
 
     QuickShort(tab1, size1);
     //DisplayArray(tab1, size1);
@@ -110,12 +111,14 @@ int main(){
     std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
 
     // 2.
-    start = std::chrono::high_resolution_clock::now();
+
 
     int tab2[100];
     int size2 = std::size(tab2);
 
     RandomArray(tab2, size2);
+
+    start = std::chrono::high_resolution_clock::now();
 
     QuickShort(tab2, size2);
     //DisplayArray(tab2, size2);
@@ -126,10 +129,11 @@ int main(){
     std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
 
     // 3.
-    start = std::chrono::high_resolution_clock::now();
 
     int tab3[1000];
     int size3 = std::size(tab3);
+
+    start = std::chrono::high_resolution_clock::now();
 
     RandomArray(tab3, size3);
 
@@ -142,12 +146,13 @@ int main(){
     std::cout << "Execution Time : " << duration.count() << " microseconds." << std::endl;
 
     // 4.
-    start = std::chrono::high_resolution_clock::now();
 
     int tab4[1000];
     int size4 = std::size(tab4);
 
     RandomArray(tab4, size4);
+
+    start = std::chrono::high_resolution_clock::now();
 
     InverseTriABulle(tab4, size4);
     //DisplayArray(tab4, size4);
